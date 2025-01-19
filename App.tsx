@@ -1,9 +1,29 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image, FlatList, Dimensions, TouchableOpacity } from 'react-native';
 
 const App = () => {
+  const images = [
+    'https://images.pexels.com/photos/30283735/pexels-photo-30283735/free-photo-of-man-enjoying-nature-with-traditional-mate-drink.jpeg',
+    'https://images.pexels.com/photos/30217969/pexels-photo-30217969/free-photo-of-fisherman-in-calm-waters-quy-nh-n-vietnam.jpeg',
+    'https://images.pexels.com/photos/789555/pexels-photo-789555.jpeg',
+    'https://images.pexels.com/photos/2649113/pexels-photo-2649113.jpeg',
+    'https://images.pexels.com/photos/3871773/pexels-photo-3871773.jpeg',
+    'https://images.pexels.com/photos/2646483/pexels-photo-2646483.jpeg',
+    'https://images.pexels.com/photos/2885916/pexels-photo-2885916.jpeg',
+    'https://images.pexels.com/photos/2613458/pexels-photo-2613458.jpeg',
+    'https://images.pexels.com/photos/2609925/pexels-photo-2609925.jpeg'
+  ];
+
+  const screenWidth = Dimensions.get('window').width;
+  const squareSize = screenWidth / 3;
+
+  const renderItem = ({ item }) => (
+    <Image source={{ uri: item }} style={[styles.pics, {width: squareSize, height: squareSize }]} />
+  );
+
   return (
     <ScrollView style={styles.container} >
+      {/* HEADER */}
       <View style={styles.header}>
         <Image  style={styles.image} source={require('./assets/backbutton.png')} />
         <View style={styles.container2}>
@@ -17,6 +37,7 @@ const App = () => {
       <Image style={styles.profile} source={require('./assets/profile.jpeg')} />
       </View>
 
+      {/* PROFILE STATS*/}
       <View style={styles.statisticssContainer}>
         <View style={styles.statistics}>
           <Text style={styles.statisticsNumber}>53</Text>
@@ -36,6 +57,7 @@ const App = () => {
       <Text style={styles.name}>group name</Text>
     </View>
 
+    {/* PROFILE INFO */}
     <View >
      <Text style={styles.description}>this is a description</Text>
     </View>
@@ -44,6 +66,36 @@ const App = () => {
     </View>
     <View style={styles.followbutton}>
       <Text style={styles.followbuttontext}>Follow</Text>
+    </View>
+    
+    {/* PROFILE IMAGES */}
+    <FlatList
+      data={images}
+      renderItem={renderItem}
+      keyExtractor={(item, index) => index.toString()}
+      numColumns={3}
+      contentContainerStyle={styles.grid}
+    />
+
+    {/* FOOTER */}
+    <View style={styles.footercontainer}>
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.iconWrapper}>
+          <Image source={require('./assets/home-918.png')} style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconWrapper}>
+          <Image source={require('./assets/search-2903.png')} style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconWrapper}>
+          <Image source={require('./assets/instagram-reels-13409.png')} style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconWrapper}>
+          <Image source={require('./assets/bag-1998.png')} style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconWrapper}>
+          <Image source={require('./assets/user-3296.png')} style={styles.icon} />
+        </TouchableOpacity>
+      </View>
     </View>
     </ScrollView>
   );
@@ -55,7 +107,10 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     backgroundColor: '#fff',
   },
-
+  footercontainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
   image:{
     width: 40,
     height: 40,
@@ -64,7 +119,7 @@ const styles = StyleSheet.create({
   header: {
     display: 'flex',
     flexDirection: 'row',
-   alignItems: 'center',
+    alignItems: 'center',
     justifyContent: 'space-between',
 
     paddingHorizontal: 20,
@@ -89,8 +144,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
-    paddingHorizontal
-    : 20,
+    paddingHorizontal: 20,
   },
   profileCircle: {
     width: 80,
@@ -150,13 +204,36 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 20,
   
-},
-followbuttontext: {
+  },
+  followbuttontext: {
     textAlign: 'center',
     padding: 10,
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 16,}
+    fontSize: 16,
+  },
+  grid: {
+    alignItems: 'center',
+    marginTop: 15
+  },
+  pics: {
+    margin: 1,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    height: 60,
+    backgroundColor: 'white',
+  },
+  iconWrapper: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  icon: {
+    width: 30,
+    height: 30,
+  }
 });
 
 export default App;
