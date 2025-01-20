@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, Image, FlatList, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image, FlatList, Dimensions, TouchableOpacity, Button } from 'react-native';
 
 const App = () => {
   const images = [
@@ -25,12 +25,12 @@ const App = () => {
     <ScrollView style={styles.container} >
       {/* HEADER */}
       <View style={styles.header}>
-        <Image  style={styles.image} source={require('./assets/backbutton.png')} />
+        <Image  style={styles.image} source={require('./assets/ChevronLeft.png')} />
         <View style={styles.container2}>
         <Text style={styles.headerText}>Username</Text>
         <Text style={styles.lighttext}>user_name</Text>
         </View>
-     <Image  style={styles.image} source={require('./assets/setting.png')} />
+     <Image  style={styles.image} source={require('./assets/Add.png')} />
       </View>
       <View style={styles.container3}>
     <View style={styles.profileCircle}>
@@ -81,22 +81,29 @@ const App = () => {
     <View style={styles.footercontainer}>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.iconWrapper}>
-          <Image source={require('./assets/home-918.png')} style={styles.icon} />
+          {/* <Image source={require('./assets/home-918.png')} style={styles.icon} /> */}
+          <Image source={require('./assets/Home.png')} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconWrapper}>
-          <Image source={require('./assets/search-2903.png')} style={styles.icon} />
+          <Image source={require('./assets/Search.png')} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconWrapper}>
-          <Image source={require('./assets/instagram-reels-13409.png')} style={styles.icon} />
+          <Image source={require('./assets/Reels.png')} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconWrapper}>
-          <Image source={require('./assets/bag-1998.png')} style={styles.icon} />
+          <Image source={require('./assets/Shop.png')} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconWrapper}>
-          <Image source={require('./assets/user-3296.png')} style={styles.icon} />
+          <Image source={require('./assets/pfp.png')} style={styles.icon} />
         </TouchableOpacity>
       </View>
+      
+      <View style={styles.alertButton}> 
+        <Button title='Alert' onPress={() => alert("Alert Button Pressed")} />
+      </View>
     </View>
+
+    
     </ScrollView>
   );
 };
@@ -106,6 +113,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     backgroundColor: '#fff',
+
+  },
+  alertButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 50,
   },
   footercontainer: {
     flex: 1,
